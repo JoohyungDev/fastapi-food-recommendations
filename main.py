@@ -53,5 +53,5 @@ def recommend_food():
 # pip install fastapi
 # pip install uvicorn
     
-# uvicorn main:app --reload 터미널에 이렇게 치고
-# http://localhost:8000/recommend 주소 방문하면 나옴
+# uvicorn main:app --reload 터미널에 입력 후 하단 주소 방문
+# http://localhost:8000/recommend
