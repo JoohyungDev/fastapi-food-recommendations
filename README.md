@@ -22,6 +22,7 @@ This example starts up a [FastAPI](https://fastapi.tiangolo.com/) server.
 
 - Clone locally and install packages with pip using `pip install -r requirements.txt`
 - Run locally using `uvicorn main:app --reload`
+- Visit the address `http://localhost:8000/recommend`
 
 ## 📝 Notes
 
