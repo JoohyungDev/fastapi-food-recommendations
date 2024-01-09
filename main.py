@@ -1,4 +1,5 @@
 import random
+import pymysql
 from fastapi import FastAPI
 from datetime import datetime
 from urllib.request import urlopen
@@ -6,7 +7,14 @@ from bs4 import BeautifulSoup
 
 app = FastAPI()
 
+# 데이터베이스 연결
+conn = pymysql.connect(host='127.0.0.1', user='root', password='비공개', 
+                       db='foodDB', charset='utf8')
+# SQL문을 실행하거나 실행된 결과를 돌려받는 통로
+curs = conn.cursor()
+
 @app.get("/recommend")
+
 def recommend_food():
     current_hour = datetime.now().hour
     current_month = datetime.now().month
@@ -22,16 +30,16 @@ def recommend_food():
 
     # 현재 날씨, 온도, 계절에 따른 음식 추천을 반환하는 함수
     def recommend_by_weather_and_season(weather, temperature, month):
-        winter_menu = ["김치찌개", "부대찌개", "된장찌개", "순두부찌개", "감자탕", "해장국"]
-        summer_menu = ["냉면", "비빔밥", "삼계탕", "수박", "아이스크림", "빙수"]
-        general_menu = ["비빔밥", "불고기", "김밥", "돈까스", "피자", "햄버거", "파스타", "초밥"]
-
         if '비' in weather or '눈' in weather or month in [12, 1, 2]:  # 비나 눈이 오거나 겨울인 경우
-            return random.choice(winter_menu)
+            curs.execute("SELECT winter FROM menutable ORDER BY RAND() LIMIT 1;")
+            menu = curs.fetchone()[0]
         elif '맑음' in weather and int(temperature.replace('℃', '')) > 25 and month in [6, 7, 8]:  # 맑고 25도 이상이며 여름인 경우
-            return random.choice(summer_menu)
+            curs.execute("SELECT summer FROM menutable ORDER BY RAND() LIMIT 1;")
+            menu = curs.fetchone()[0]
         else:  # 그 외의 경우
-            return random.choice(general_menu)
+            curs.execute("SELECT general FROM menutable ORDER BY RAND() LIMIT 1;")
+            menu = curs.fetchone()[0]
+        return menu
 
     weather, temperature = get_weather_and_temp()
 
@@ -46,7 +54,7 @@ def recommend_food():
         return {"recommendation": f"저녁 메뉴: {menu}"}
     else:  # 그 외의 시간
         menu = recommend_by_weather_and_season(weather, temperature, current_month)
-        return {"recommendation": f"간식: {menu}"}
+        return {"recommendation": f"메뉴: {menu}"}
 
 
 # 라이브러리 설치
