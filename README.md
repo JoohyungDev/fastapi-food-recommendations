@@ -17,6 +17,7 @@ This example starts up a [FastAPI](https://fastapi.tiangolo.com/) server.
 - FastAPI
 - [Hypercorn](https://hypercorn.readthedocs.io/)
 - Python 3
+- Mysql
 
 ## 💁‍♀️ How to use
 
