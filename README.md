@@ -1,12 +1,3 @@
----
-title: FastAPI
-description: A FastAPI server
-tags:
-  - fastapi
-  - hypercorn
-  - python
----
-
 # FastAPI Example
 
 This example starts up a [FastAPI](https://fastapi.tiangolo.com/) server.
