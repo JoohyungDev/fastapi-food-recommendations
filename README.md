@@ -1,10 +1,8 @@
 # FastAPI를 활용한 음식 추천 서비스
 [![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/template/-NvLj4?referralCode=CRJ8FE)
 ## ✨ Features
-
-- FastAPI
-- [Hypercorn](https://hypercorn.readthedocs.io/)
 - Python 3
+- FastAPI
 - Mysql
 
 ## 💁‍♀️ How to use
