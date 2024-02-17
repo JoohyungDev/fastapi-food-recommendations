@@ -1,7 +1,4 @@
 # FastAPI를 활용한 음식 추천 서비스
-
-- [FastAPI](https://fastapi.tiangolo.com/) 서버를 사용하였습니다.
-
 [![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/template/-NvLj4?referralCode=CRJ8FE)
 ## ✨ Features
 
